@@ -214,7 +214,7 @@ updateScrollState();
 
 if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const revealTargets = document.querySelectorAll(
-    ".site-header, .hero-copy, .hero-visual, .fact, .section-heading, .approach-copy, .step-card, .coverage-heading, .coverage-card, .coverage-note, .guide-heading, .guide-card, .faq-heading, .faq-item, .about-portrait-wrap, .about-copy, .contact-copy, .contact-details, .footer-brand, .footer-links, .footer-bottom",
+    ".site-header, .hero-copy, .hero-visual, .fact, .section-heading, .approach-copy, .step-card, .coverage-heading, .coverage-card, .coverage-note, .guide-heading, .guide-card, .faq-heading, .faq-item, .about-portrait-wrap, .about-copy, .moments-copy, .moments-video-frame, .contact-copy, .contact-details, .footer-brand, .footer-links, .footer-bottom",
   );
 
   revealTargets.forEach((element, index) => {
