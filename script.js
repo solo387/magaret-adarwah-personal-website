@@ -77,6 +77,10 @@ const guideDescription = document.querySelector("#guide-description");
 const guideLabel = document.querySelector("#guide-label");
 const guideQuestions = document.querySelector("#guide-questions");
 const guideContact = document.querySelector("#guide-contact");
+const guidePrint = document.querySelector("#guide-print");
+const printableGuideTopic = document.querySelector("#print-guide-topic");
+const printableGuidePrompt = document.querySelector("#print-guide-prompt");
+const printableGuideQuestions = document.querySelector("#print-guide-questions");
 
 function selectGuideTopic(topic) {
   const selection = guideTopics[topic];
@@ -106,7 +110,24 @@ function selectGuideTopic(topic) {
       return item;
     }),
   );
-  guideContact.href = `mailto:margaret@ablazesolutions.net?subject=${encodeURIComponent(selection.subject)}`;
+  const emailBody = "Hi Margaret,\n\nI'd like to request a time to talk. Please let me know what works for you.\n\nThank you.";
+  guideContact.href = `mailto:margaret@ablazesolutions.net?subject=${encodeURIComponent(`Request a conversation: ${selection.subject}`)}&body=${encodeURIComponent(emailBody)}`;
+
+  if (printableGuideTopic && printableGuidePrompt && printableGuideQuestions) {
+    printableGuideTopic.textContent = selection.subject;
+    printableGuidePrompt.textContent = selection.prompt;
+    printableGuideQuestions.replaceChildren(
+      ...selection.questions.map((question) => {
+        const item = document.createElement("li");
+        item.textContent = question;
+        return item;
+      }),
+    );
+  }
+}
+
+if (guidePrint) {
+  guidePrint.addEventListener("click", () => window.print());
 }
 
 if (topicPicker) {

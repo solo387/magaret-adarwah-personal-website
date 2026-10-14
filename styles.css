@@ -273,6 +273,20 @@ h2 em {
   background: var(--forest-deep);
 }
 
+.button-outline {
+  border-color: var(--forest);
+  background: transparent;
+  color: var(--forest);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.button-outline:hover {
+  background: var(--sage);
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -542,7 +556,8 @@ h2 em {
 
 .portrait {
   width: 100%;
-  aspect-ratio: 0.88;
+  height: auto;
+  aspect-ratio: 768 / 1084;
   object-fit: cover;
   object-position: center 35%;
 }
@@ -1081,6 +1096,13 @@ h2 em {
   font-size: 11px;
 }
 
+.guide-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .faq-section {
   display: grid;
   grid-template-columns: 0.75fr 1fr;
@@ -1250,7 +1272,8 @@ h2 em {
   position: relative;
   z-index: 1;
   width: 100%;
-  aspect-ratio: 0.91;
+  height: auto;
+  aspect-ratio: 768 / 1084;
   object-fit: cover;
   object-position: center 35%;
 }
@@ -1343,6 +1366,11 @@ h2 em {
   color: #d4dfd8;
   font-size: 13px;
   line-height: 1.9;
+}
+
+.contact-copy > .contact-privacy {
+  margin-top: -12px;
+  font-size: 11px;
 }
 
 .button-light {
@@ -1913,5 +1941,92 @@ h2 em {
 
   .faq-item > p {
     animation: none;
+  }
+}
+
+.print-guide {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    overflow: clip;
+  }
+
+  .guide-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .guide-actions .button {
+    width: 100%;
+  }
+}
+
+@media print {
+  @page {
+    margin: 18mm;
+  }
+
+  body > *:not(.print-guide) {
+    display: none !important;
+  }
+
+  .print-guide {
+    display: block !important;
+    color: #21332e;
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .print-guide-brand {
+    color: #24463c;
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .print-guide h1 {
+    margin: 0 0 8mm;
+    font-size: 28pt;
+  }
+
+  .print-guide h2 {
+    margin: 10mm 0 3mm;
+    font-size: 15pt;
+  }
+
+  .print-guide-topic {
+    font-weight: 700;
+  }
+
+  .print-guide ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .print-guide li {
+    position: relative;
+    margin: 0 0 5mm;
+    padding-left: 8mm;
+  }
+
+  .print-guide li::before {
+    position: absolute;
+    top: 0.15em;
+    left: 0;
+    width: 4mm;
+    height: 4mm;
+    border: 1px solid #56625b;
+    content: "";
+  }
+
+  .print-guide-note {
+    margin-top: 10mm;
+    padding-top: 4mm;
+    border-top: 1px solid #d9ded6;
+    font-size: 10pt;
   }
 }

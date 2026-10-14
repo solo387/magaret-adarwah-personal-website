@@ -47,8 +47,8 @@
         }
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=13">
-    <script src="script.js?v=8" defer></script>
+    <link rel="stylesheet" href="styles.css?v=14">
+    <script src="script.js?v=9" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -111,10 +111,10 @@
           <div class="portrait-frame">
             <img
               class="portrait"
-              src="https://pub-689d757d3fe2430f901fccf55c4fa1b0.r2.dev/brand/margaret-portrait-400.webp"
+              src="margaret-portrait.webp"
               alt="Margaret, founder of Ablaze Financial Consulting"
-              width="400"
-              height="500"
+              width="768"
+              height="1084"
               fetchpriority="high"
             >
             <div class="portrait-caption"><span class="caption-rule" aria-hidden="true"></span>Here to help you find clarity</div>
@@ -272,7 +272,10 @@
             </div>
             <div class="guide-footer">
               <span class="guide-disclaimer">General conversation prompts—not an insurance recommendation.</span>
-              <a class="button button-primary" id="guide-contact" href="mailto:margaret@ablazesolutions.net?subject=Life%20insurance%20conversation">Talk about this topic <span aria-hidden="true">↗</span></a>
+              <div class="guide-actions">
+                <button class="button button-outline" id="guide-print" type="button">Print or save as PDF</button>
+                <a class="button button-primary" id="guide-contact" href="mailto:margaret@ablazesolutions.net?subject=Life%20insurance%20conversation">Request a conversation <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
           </div>
         </div>
@@ -304,10 +307,10 @@
         <div class="about-portrait-wrap">
           <div class="about-photo-accent" aria-hidden="true"></div>
           <img
-            src="https://pub-689d757d3fe2430f901fccf55c4fa1b0.r2.dev/brand/margaret-portrait-400.webp"
+            src="margaret-portrait.webp"
             alt="Margaret, founder of Ablaze Financial Consulting"
-            width="400"
-            height="500"
+            width="768"
+            height="1084"
             loading="lazy"
           >
           <span class="about-photo-label">A NOTE FROM MARGARET</span>
@@ -334,8 +337,9 @@
           <div class="contact-copy">
             <p class="eyebrow eyebrow-light"><span class="eyebrow-mark" aria-hidden="true"></span> Your next step can be simple</p>
             <h2 id="contact-title">Let’s make sense<br>of <em>what matters.</em></h2>
-            <p>Tell Margaret what’s on your mind. There’s no charge for an initial conversation, and nothing has to be decided in it.</p>
-            <a class="button button-light" href="mailto:margaret@ablazesolutions.net?subject=Let%27s%20start%20a%20conversation">Send Margaret a note <span aria-hidden="true">↗</span></a>
+            <p>Request a time to talk by email or phone. There’s no charge for an initial conversation, and nothing has to be decided in it.</p>
+            <p class="contact-privacy">Please don’t email sensitive health, financial, or policy details. You can discuss what you’re comfortable sharing in a conversation.</p>
+            <a class="button button-light" href="mailto:margaret@ablazesolutions.net?subject=Request%20a%20conversation&amp;body=Hi%20Margaret%2C%0A%0AI%27d%20like%20to%20request%20a%20time%20to%20talk.%20Please%20let%20me%20know%20what%20works%20for%20you.%0A%0AThank%20you.">Request a conversation <span aria-hidden="true">↗</span></a>
           </div>
           <div class="contact-details">
             <div class="contact-detail">
@@ -391,5 +395,20 @@
         <p class="disclaimer">Website content is general information only and is not tax, legal, investment, or accounting advice. No website content binds coverage or guarantees approval.</p>
       </div>
     </footer>
+    <section class="print-guide" id="printable-guide" aria-hidden="true">
+      <p class="print-guide-brand">Ablaze Financial Consulting</p>
+      <h1>Conversation checklist</h1>
+      <p id="print-guide-topic" class="print-guide-topic"></p>
+      <p id="print-guide-prompt" class="print-guide-prompt"></p>
+      <h2>Questions to consider</h2>
+      <ul id="print-guide-questions"></ul>
+      <h2>Helpful to have, if available</h2>
+      <ul>
+        <li>Any existing coverage documents you would like to discuss</li>
+        <li>Your questions and the priorities you would like to talk through</li>
+      </ul>
+      <p class="print-guide-note">These prompts are general information, not an insurance recommendation. No need to email personal health, financial, or policy details.</p>
+      <p>margaret@ablazesolutions.net | (703) 310-9458 | ablazesolutions.net</p>
+    </section>
   </body>
 </html>
