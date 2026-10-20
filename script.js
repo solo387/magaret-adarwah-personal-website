@@ -126,6 +126,8 @@ function selectGuideTopic(topic) {
   }
 }
 
+selectGuideTopic("life");
+
 if (guidePrint) {
   guidePrint.addEventListener("click", () => window.print());
 }
