@@ -14,6 +14,8 @@ python -m http.server 8000
 
 Then visit <http://localhost:8000>.
 
-The site includes the business logo hosted by the existing Ablaze website, a locally optimized WebP portrait, and a locally hosted event video with a poster image. Video playback is visitor-controlled and does not autoplay. It also provides email, phone, and LinkedIn links. Visitors can print or save their selected conversation questions as a PDF. Email links help visitors request a conversation; no appointment scheduler, contact form, or analytics service is configured. The site does not collect personal details, and visitors are asked not to email sensitive information.
+The site includes the business logo hosted by the existing Ablaze website, a locally optimized WebP portrait, a gallery of team meetings and seminar photos with an accessible full-size photo viewer, and locally hosted event videos with poster images. Videos have controls, do not autoplay, and the original event video's audio is gently boosted and peak-limited for clearer playback.
+
+It also provides email, phone, and LinkedIn links. Visitors can print or save their selected conversation questions as a PDF. Email links help visitors request a conversation; no appointment scheduler, contact form, or analytics service is configured. The site does not collect personal details, and visitors are asked not to email sensitive information.
 
 The repository also contains Coverpath's local development tooling and documentation in [COVERPATH.md](./COVERPATH.md); it is separate from this public-facing website.

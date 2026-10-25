@@ -140,6 +140,91 @@ if (topicPicker) {
   });
 }
 
+const momentsGallery = document.querySelector(".moments-gallery");
+const photoLightbox = document.querySelector("#photo-lightbox");
+const lightboxImage = document.querySelector("#photo-lightbox-image");
+const lightboxCaption = document.querySelector("#photo-lightbox-caption");
+const lightboxCount = document.querySelector("#photo-lightbox-count");
+const lightboxClose = document.querySelector("#photo-lightbox-close");
+const lightboxPrevious = document.querySelector("#photo-lightbox-previous");
+const lightboxNext = document.querySelector("#photo-lightbox-next");
+
+if (
+  momentsGallery &&
+  photoLightbox instanceof HTMLDialogElement &&
+  lightboxImage instanceof HTMLImageElement &&
+  lightboxCaption &&
+  lightboxCount &&
+  lightboxClose &&
+  lightboxPrevious &&
+  lightboxNext
+) {
+  const photos = Array.from(momentsGallery.querySelectorAll(".moments-photo"));
+  let activePhotoIndex = 0;
+
+  photos.forEach((photo) => {
+    const image = photo.querySelector("img");
+    if (!image) return;
+    photo.tabIndex = 0;
+    photo.setAttribute("role", "button");
+    photo.setAttribute("aria-haspopup", "dialog");
+    photo.setAttribute("aria-label", `View photo: ${image.alt}`);
+  });
+
+  function showPhoto(index) {
+    activePhotoIndex = (index + photos.length) % photos.length;
+    const photo = photos[activePhotoIndex];
+    const image = photo.querySelector("img");
+    const caption = photo.querySelector("figcaption");
+    if (!image) return;
+
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt;
+    lightboxCaption.textContent = caption?.textContent ?? image.alt;
+    lightboxCount.textContent = `Photo ${activePhotoIndex + 1} of ${photos.length}`;
+  }
+
+  function openPhoto(photo) {
+    const index = photos.indexOf(photo);
+    if (index < 0) return;
+    showPhoto(index);
+    photoLightbox.showModal();
+    lightboxClose.focus();
+  }
+
+  momentsGallery.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const photo = event.target.closest(".moments-photo");
+    if (photo) openPhoto(photo);
+  });
+
+  momentsGallery.addEventListener("keydown", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const photo = event.target.closest(".moments-photo");
+    if (!photo || (event.key !== "Enter" && event.key !== " ")) return;
+    event.preventDefault();
+    openPhoto(photo);
+  });
+
+  lightboxClose.addEventListener("click", () => photoLightbox.close());
+  lightboxPrevious.addEventListener("click", () => showPhoto(activePhotoIndex - 1));
+  lightboxNext.addEventListener("click", () => showPhoto(activePhotoIndex + 1));
+
+  photoLightbox.addEventListener("click", (event) => {
+    if (event.target === photoLightbox) photoLightbox.close();
+  });
+
+  photoLightbox.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      photoLightbox.close();
+      return;
+    }
+    if (event.key === "ArrowLeft") showPhoto(activePhotoIndex - 1);
+    if (event.key === "ArrowRight") showPhoto(activePhotoIndex + 1);
+  });
+}
+
 const coverageGrid = document.querySelector(".coverage-grid");
 if (coverageGrid) {
   coverageGrid.addEventListener("click", (event) => {

@@ -1374,12 +1374,23 @@ h2 em {
   box-shadow: 0 22px 55px rgba(29, 56, 47, 0.13);
 }
 
+.moments-video-list {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 .moments-video {
   display: block;
   width: 100%;
   aspect-ratio: 3 / 2;
   background: var(--forest-deep);
   object-fit: cover;
+}
+
+.moments-video-list .moments-video {
+  aspect-ratio: 16 / 9;
 }
 
 .moments-video-caption {
@@ -1390,6 +1401,149 @@ h2 em {
   font-family: var(--display);
   font-size: 13px;
   font-style: italic;
+}
+
+.moments-gallery {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moments-photo {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(36, 70, 60, 0.13);
+  background: var(--paper);
+  box-shadow: 0 9px 24px rgba(29, 56, 47, 0.06);
+}
+
+.moments-photo[role="button"] {
+  cursor: zoom-in;
+}
+
+.moments-photo[role="button"]:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 4px;
+}
+
+.moments-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 320ms ease;
+}
+
+.moments-photo:hover img {
+  transform: scale(1.035);
+}
+
+.moments-photo figcaption {
+  padding: 12px 14px;
+  color: var(--forest);
+  font-family: var(--display);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.photo-lightbox {
+  width: min(1000px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  padding: 0;
+  border: 1px solid rgba(255, 254, 250, 0.24);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.32);
+}
+
+.photo-lightbox::backdrop {
+  background: rgba(18, 31, 27, 0.88);
+  backdrop-filter: blur(5px);
+}
+
+.photo-lightbox-toolbar {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 18px;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.photo-lightbox-close,
+.photo-lightbox-nav {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--forest);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.photo-lightbox-close {
+  padding: 0 12px;
+}
+
+.photo-lightbox-close span {
+  font-size: 21px;
+  line-height: 1;
+}
+
+.photo-lightbox-nav {
+  padding: 0 13px;
+}
+
+.photo-lightbox-close:hover,
+.photo-lightbox-nav:hover {
+  border-color: var(--forest);
+  background: var(--sage);
+}
+
+.photo-lightbox-image {
+  width: 100%;
+  max-height: min(70dvh, 760px);
+  object-fit: contain;
+  background: var(--forest-deep);
+}
+
+.photo-lightbox-footer {
+  display: grid;
+  grid-template-columns: 1fr minmax(120px, 2fr) 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px 18px;
+}
+
+.photo-lightbox-footer p {
+  margin: 0;
+  color: var(--forest);
+  font-family: var(--display);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.photo-lightbox-nav:last-child {
+  justify-self: end;
 }
 
 .contact {
@@ -1631,6 +1785,12 @@ h2 em {
 
   .moments-inner {
     gap: 38px;
+  }
+
+  .moments-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 0;
   }
 
   .footer-main {
@@ -1887,8 +2047,37 @@ h2 em {
     gap: 28px;
   }
 
+  .moments-video-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
   .moments-copy {
     max-width: 540px;
+  }
+
+  .moments-gallery {
+    gap: 12px;
+  }
+
+  .moments-photo figcaption {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .photo-lightbox-footer {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .photo-lightbox-footer p {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .photo-lightbox-image {
+    max-height: 68dvh;
   }
 
   .faq-item summary {
