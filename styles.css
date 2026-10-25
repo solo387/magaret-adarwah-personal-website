@@ -170,9 +170,11 @@ button:focus-visible {
 .hero {
   display: grid;
   min-height: 620px;
+  width: min(1280px, calc(100% - 64px));
   grid-template-columns: 1fr 0.85fr;
   align-items: center;
   gap: clamp(40px, 7vw, 100px);
+  margin-inline: auto;
   padding-block: 72px 84px;
   overflow-x: clip;
   perspective: 1400px;
@@ -1403,6 +1405,67 @@ h2 em {
   font-style: italic;
 }
 
+.moments-gallery-tools {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.moments-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.moments-filter-button {
+  display: inline-flex;
+  min-height: 39px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+  border: 1px solid rgba(36, 70, 60, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 254, 250, 0.68);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.moments-filter-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--forest);
+  color: var(--forest);
+}
+
+.moments-filter-button[aria-pressed="true"] {
+  border-color: var(--forest);
+  background: var(--forest);
+  color: white;
+}
+
+.moments-filter-button span {
+  color: var(--orange);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.moments-filter-button[aria-pressed="true"] span {
+  color: #e6c09d;
+}
+
+.moments-gallery-count {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
 .moments-gallery {
   display: grid;
   grid-column: 1 / -1;
@@ -1411,6 +1474,10 @@ h2 em {
   margin: 12px 0 0;
   padding: 0;
   list-style: none;
+}
+
+.moments-gallery > li[hidden] {
+  display: none;
 }
 
 .moments-photo {
@@ -1589,6 +1656,12 @@ h2 em {
   font-size: 11px;
 }
 
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .button-light {
   background: var(--cream);
   color: var(--forest);
@@ -1596,6 +1669,17 @@ h2 em {
 
 .button-light:hover {
   background: white;
+}
+
+.button-contact-whatsapp {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  color: white;
+}
+
+.button-contact-whatsapp:hover {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .contact-details {
@@ -1747,6 +1831,7 @@ h2 em {
 
   .hero {
     min-height: 560px;
+    width: calc(100% - 48px);
     grid-template-columns: 1.1fr 0.9fr;
     gap: 35px;
     padding-block: 62px;
@@ -1887,6 +1972,7 @@ h2 em {
 
   .hero {
     min-height: auto;
+    width: calc(100% - 40px);
     grid-template-columns: 1fr;
     gap: 29px;
     padding-block: 58px 64px;
@@ -2056,6 +2142,23 @@ h2 em {
     max-width: 540px;
   }
 
+  .moments-gallery-tools {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .moments-filters {
+    gap: 7px;
+  }
+
+  .moments-filter-button {
+    min-height: 37px;
+    padding-inline: 12px;
+    font-size: 10px;
+  }
+
   .moments-gallery {
     gap: 12px;
   }
@@ -2154,6 +2257,10 @@ h2 em {
 
   .hero h1 {
     font-size: 49px;
+  }
+
+  .hero {
+    width: calc(100% - 32px);
   }
 
   .hero-actions {

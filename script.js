@@ -141,6 +141,8 @@ if (topicPicker) {
 }
 
 const momentsGallery = document.querySelector(".moments-gallery");
+const momentsFilters = document.querySelector(".moments-filters");
+const momentsGalleryCount = document.querySelector("#moments-gallery-count");
 const photoLightbox = document.querySelector("#photo-lightbox");
 const lightboxImage = document.querySelector("#photo-lightbox-image");
 const lightboxCaption = document.querySelector("#photo-lightbox-caption");
@@ -151,6 +153,8 @@ const lightboxNext = document.querySelector("#photo-lightbox-next");
 
 if (
   momentsGallery &&
+  momentsFilters &&
+  momentsGalleryCount &&
   photoLightbox instanceof HTMLDialogElement &&
   lightboxImage instanceof HTMLImageElement &&
   lightboxCaption &&
@@ -160,6 +164,7 @@ if (
   lightboxNext
 ) {
   const photos = Array.from(momentsGallery.querySelectorAll(".moments-photo"));
+  const filterButtons = Array.from(momentsFilters.querySelectorAll("button[data-gallery-filter]"));
   let activePhotoIndex = 0;
 
   photos.forEach((photo) => {
@@ -171,9 +176,48 @@ if (
     photo.setAttribute("aria-label", `View photo: ${image.alt}`);
   });
 
+  function getVisiblePhotos() {
+    return photos.filter((photo) => !photo.closest("li")?.hidden);
+  }
+
+  function setGalleryFilter(category) {
+    if (!filterButtons.some((button) => button.dataset.galleryFilter === category)) return;
+
+    photos.forEach((photo) => {
+      const listItem = photo.closest("li");
+      if (listItem) listItem.hidden = category !== "all" && listItem.dataset.category !== category;
+    });
+
+    filterButtons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.galleryFilter === category));
+    });
+
+    const visibleCount = getVisiblePhotos().length;
+    momentsGalleryCount.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? "photo" : "photos"}`;
+  }
+
+  filterButtons.forEach((button) => {
+    const category = button.dataset.galleryFilter;
+    const count = category === "all"
+      ? photos.length
+      : photos.filter((photo) => photo.closest("li")?.dataset.category === category).length;
+    const countLabel = button.querySelector("[data-filter-count]");
+    if (countLabel) countLabel.textContent = String(count);
+  });
+
+  momentsFilters.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const button = event.target.closest("button[data-gallery-filter]");
+    if (button) setGalleryFilter(button.dataset.galleryFilter);
+  });
+
+  setGalleryFilter("all");
+
   function showPhoto(index) {
-    activePhotoIndex = (index + photos.length) % photos.length;
-    const photo = photos[activePhotoIndex];
+    const visiblePhotos = getVisiblePhotos();
+    if (visiblePhotos.length === 0) return;
+    activePhotoIndex = (index + visiblePhotos.length) % visiblePhotos.length;
+    const photo = visiblePhotos[activePhotoIndex];
     const image = photo.querySelector("img");
     const caption = photo.querySelector("figcaption");
     if (!image) return;
@@ -181,11 +225,11 @@ if (
     lightboxImage.src = image.currentSrc || image.src;
     lightboxImage.alt = image.alt;
     lightboxCaption.textContent = caption?.textContent ?? image.alt;
-    lightboxCount.textContent = `Photo ${activePhotoIndex + 1} of ${photos.length}`;
+    lightboxCount.textContent = `Photo ${activePhotoIndex + 1} of ${visiblePhotos.length}`;
   }
 
   function openPhoto(photo) {
-    const index = photos.indexOf(photo);
+    const index = getVisiblePhotos().indexOf(photo);
     if (index < 0) return;
     showPhoto(index);
     photoLightbox.showModal();
