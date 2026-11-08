@@ -2323,13 +2323,90 @@ h2 em {
   .faq-item > p {
     animation: none;
   }
+
+  .mobile-contact-bar {
+    transition: none;
+  }
 }
 
 .print-guide {
   display: none;
 }
 
+.mobile-contact-bar {
+  display: none;
+}
+
 @media (max-width: 700px) {
+  body:has(.mobile-contact-bar.is-visible) {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-contact-bar {
+    position: fixed;
+    z-index: 8;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(217, 222, 214, 0.9);
+    background: rgba(248, 247, 242, 0.96);
+    box-shadow: 0 -8px 24px rgba(29, 56, 47, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .mobile-contact-bar.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobile-contact-bar a {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--forest);
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mobile-contact-email {
+    background: var(--forest);
+    color: white;
+  }
+
+  .mobile-contact-email span {
+    color: #e6c09d;
+  }
+
+  .mobile-contact-call {
+    min-width: 100px;
+    padding-inline: 14px;
+    color: var(--forest);
+  }
+
+  .mobile-contact-call svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .mobile-contact-bar a:focus-visible {
+    outline-offset: -4px;
+  }
+
   .hero {
     overflow: clip;
   }

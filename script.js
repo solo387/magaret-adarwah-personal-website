@@ -320,6 +320,8 @@ reducedMotionQuery.addEventListener("change", (event) => {
 });
 
 const progressBar = document.querySelector(".scroll-progress span");
+const mobileContactBar = document.querySelector(".mobile-contact-bar");
+const contactActions = document.querySelector(".contact-actions");
 let scrollFrame = 0;
 
 function updateScrollState() {
@@ -332,6 +334,20 @@ function updateScrollState() {
   }
 
   document.querySelector(".site-header")?.classList.toggle("is-scrolled", window.scrollY > 12);
+
+  if (mobileContactBar) {
+    const contactBounds = contactActions?.getBoundingClientRect();
+    const contactIsVisible = contactBounds
+      && contactBounds.top < window.innerHeight
+      && contactBounds.bottom > 0;
+    const menuIsOpen = menuToggle?.getAttribute("aria-expanded") === "true";
+    const shouldShowContactBar = window.innerWidth <= 700
+      && window.scrollY > 320
+      && !contactIsVisible
+      && !menuIsOpen;
+
+    mobileContactBar.classList.toggle("is-visible", shouldShowContactBar);
+  }
 }
 
 function scheduleScrollStateUpdate() {
@@ -341,6 +357,7 @@ function scheduleScrollStateUpdate() {
 
 window.addEventListener("scroll", scheduleScrollStateUpdate, { passive: true });
 window.addEventListener("resize", scheduleScrollStateUpdate);
+menuToggle?.addEventListener("click", scheduleScrollStateUpdate);
 updateScrollState();
 
 if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
