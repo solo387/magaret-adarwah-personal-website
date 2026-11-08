@@ -14,7 +14,7 @@ python -m http.server 8000
 
 Then visit <http://localhost:8000>.
 
-The site includes the business logo hosted by the existing Ablaze website, a locally optimized WebP portrait, a filterable gallery of team meetings and seminar photos with an accessible full-size photo viewer, and locally hosted event videos with poster images. Videos have controls, do not autoplay, and the original event video's audio is gently boosted and peak-limited for clearer playback.
+The site includes the business logo hosted by the existing Ablaze website, a locally optimized WebP portrait, a filterable gallery of team meetings and seminar photos with an accessible full-size photo viewer, and locally hosted event videos, including a portrait-format recording of Margaret presenting at a seminar. Videos have matching posters and controls, and do not autoplay.
 
 It also provides email, phone, WhatsApp, and LinkedIn links. Visitors can print or save their selected conversation questions as a PDF. Email links help visitors request a conversation; no appointment scheduler, contact form, or analytics service is configured. The site does not collect personal details, and visitors are asked not to email sensitive information.
 

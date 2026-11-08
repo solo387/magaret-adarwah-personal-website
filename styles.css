@@ -1376,6 +1376,11 @@ h2 em {
   box-shadow: 0 22px 55px rgba(29, 56, 47, 0.13);
 }
 
+.moments-video-frame--portrait {
+  width: min(100%, 380px);
+  justify-self: center;
+}
+
 .moments-video-list {
   display: grid;
   grid-column: 1 / -1;
@@ -1389,6 +1394,11 @@ h2 em {
   aspect-ratio: 3 / 2;
   background: var(--forest-deep);
   object-fit: cover;
+}
+
+.moments-video-frame--portrait .moments-video {
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
 }
 
 .moments-video-list .moments-video {
