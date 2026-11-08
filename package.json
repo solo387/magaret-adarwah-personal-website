@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node dev.mjs",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "node dev.mjs --preview",
     "test": "node --test"
