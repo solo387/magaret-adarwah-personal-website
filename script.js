@@ -324,25 +324,42 @@ const mobileContactBar = document.querySelector(".mobile-contact-bar");
 const contactActions = document.querySelector(".contact-actions");
 let scrollFrame = 0;
 
+let cachedScrollable = 0;
+function measureScrollable() {
+  cachedScrollable = document.documentElement.scrollHeight - window.innerHeight;
+}
+if ("ResizeObserver" in window) {
+  new ResizeObserver(measureScrollable).observe(document.body);
+}
+window.addEventListener("resize", measureScrollable);
+window.addEventListener("load", measureScrollable);
+measureScrollable();
+
 function updateScrollState() {
   scrollFrame = 0;
-  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+  const scrollY = window.scrollY;
+  const progress = cachedScrollable > 0 ? scrollY / cachedScrollable : 0;
+  const viewportWidth = window.innerWidth;
+
+  // Read layout first, then write, to avoid forced reflow.
+  let contactIsVisible = false;
+  if (mobileContactBar && viewportWidth <= 700 && scrollY > 320) {
+    const contactBounds = contactActions?.getBoundingClientRect();
+    contactIsVisible = Boolean(contactBounds
+      && contactBounds.top < window.innerHeight
+      && contactBounds.bottom > 0);
+  }
 
   if (progressBar) {
     progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
   }
 
-  document.querySelector(".site-header")?.classList.toggle("is-scrolled", window.scrollY > 12);
+  document.querySelector(".site-header")?.classList.toggle("is-scrolled", scrollY > 12);
 
   if (mobileContactBar) {
-    const contactBounds = contactActions?.getBoundingClientRect();
-    const contactIsVisible = contactBounds
-      && contactBounds.top < window.innerHeight
-      && contactBounds.bottom > 0;
     const menuIsOpen = menuToggle?.getAttribute("aria-expanded") === "true";
-    const shouldShowContactBar = window.innerWidth <= 700
-      && window.scrollY > 320
+    const shouldShowContactBar = viewportWidth <= 700
+      && scrollY > 320
       && !contactIsVisible
       && !menuIsOpen;
 
