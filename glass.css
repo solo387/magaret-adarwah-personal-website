@@ -1,0 +1,536 @@
+/* ==========================================================================
+   Ablaze Financial Consulting — "Nature · Glass" visual layer
+   Loaded after styles.css. Remove the <link> in index.html to revert.
+   ========================================================================== */
+
+:root {
+  --moss: #3f6b55;
+  --leaf: #7fa88a;
+  --mist: #dfeadf;
+  --sun: #f2c57c;
+  --water: #bcd9d2;
+  --glass: rgba(255, 255, 255, 0.46);
+  --glass-strong: rgba(255, 255, 255, 0.66);
+  --glass-line: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(36, 70, 60, 0.12);
+  --glass-shadow: 0 10px 40px rgba(29, 56, 47, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --glass-shadow-lift: 0 24px 60px rgba(29, 56, 47, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --blur: blur(22px) saturate(160%);
+}
+
+/* ---------- Living backdrop: soft meadow light, water and leaves ---------- */
+html {
+  background: #eef3e9;
+}
+
+body {
+  position: relative;
+  background: transparent;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  background:
+    radial-gradient(60vmax 45vmax at 8% 6%, rgba(127, 168, 138, 0.55), transparent 62%),
+    radial-gradient(55vmax 42vmax at 96% 18%, rgba(188, 217, 210, 0.75), transparent 60%),
+    radial-gradient(50vmax 40vmax at 78% 92%, rgba(242, 197, 124, 0.38), transparent 62%),
+    radial-gradient(60vmax 45vmax at 6% 88%, rgba(63, 107, 85, 0.28), transparent 62%),
+    linear-gradient(165deg, #f4f7ee 0%, #e6efe4 45%, #f3efdf 100%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420' fill='none' stroke='%233f6b55' stroke-opacity='.16' stroke-width='1.2'%3E%3Cpath d='M60 330c40-110 120-170 220-190-20 90-90 170-220 190z'/%3E%3Cpath d='M60 330c60-70 120-110 190-150'/%3E%3Cpath d='M300 80c30 40 28 90-6 130-34-40-36-90 6-130z'/%3E%3Cpath d='M300 80v150'/%3E%3Cpath d='M340 330c20-30 50-45 80-48-6 28-30 48-80 48z'/%3E%3C/svg%3E");
+  background-size: 520px 520px;
+  background-position: 0 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.25) 100%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.25) 100%);
+}
+
+/* Drifting light orbs (decorative, behind everything) */
+.nature-orbs {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nature-orbs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: orb-drift 26s ease-in-out infinite alternate;
+}
+
+.nature-orbs span:nth-child(1) { width: 420px; height: 420px; left: -80px; top: 18%; background: #9cc5a4; }
+.nature-orbs span:nth-child(2) { width: 360px; height: 360px; right: -60px; top: 48%; background: #f3d59b; animation-delay: -9s; animation-duration: 32s; }
+.nature-orbs span:nth-child(3) { width: 320px; height: 320px; left: 38%; bottom: -120px; background: #b7d8d3; animation-delay: -4s; animation-duration: 29s; }
+
+@keyframes orb-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(60px, -50px, 0) scale(1.12); }
+}
+
+/* ---------- Section surfaces become translucent so the backdrop shows ---------- */
+.quick-facts,
+.coverage,
+.guide-section,
+.moments,
+.site-footer,
+.about,
+.approach,
+.faq-section {
+  background: transparent;
+}
+
+.coverage {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.34));
+  border-block: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.guide-section {
+  background: radial-gradient(ellipse at 8% 10%, rgba(242, 197, 124, 0.2), transparent 32%);
+}
+
+/* ---------- Header: floating frosted bar ---------- */
+.site-header {
+  background: transparent;
+}
+
+.header-inner {
+  margin-top: 14px;
+  min-height: 74px;
+  padding-inline: 26px;
+  border: 1px solid var(--glass-line);
+  border-radius: 999px;
+  background: var(--glass);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  width: min(1240px, calc(100% - 48px));
+}
+
+.site-header.is-scrolled {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-header.is-scrolled .header-inner {
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--glass-shadow-lift);
+}
+
+.brand img {
+  width: 178px;
+}
+
+.primary-navigation a:not(.nav-cta) {
+  position: relative;
+  padding-block: 6px;
+}
+
+.primary-navigation a:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--leaf), var(--sun));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 260ms ease;
+}
+
+.primary-navigation a:not(.nav-cta):hover::after,
+.primary-navigation a:not(.nav-cta):focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav-cta,
+.primary-navigation .nav-cta {
+  border-radius: 999px;
+  border-color: rgba(36, 70, 60, 0.35);
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.nav-cta:hover,
+.primary-navigation .nav-cta:hover {
+  background: var(--forest);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(29, 56, 47, 0.25);
+}
+
+.scroll-progress span {
+  background: linear-gradient(90deg, var(--leaf), var(--sun), var(--orange));
+}
+
+/* ---------- Buttons ---------- */
+.button {
+  border-radius: 999px;
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #2f5a49 0%, #24463c 60%, #1d382f 100%);
+  box-shadow: 0 12px 28px rgba(29, 56, 47, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(29, 56, 47, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.button-outline {
+  background: var(--glass);
+  border-color: var(--glass-edge);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* ---------- Hero ---------- */
+.hero h1 {
+  background: linear-gradient(120deg, #1d382f 10%, #3f6b55 70%, #6b9a7a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-intro {
+  max-width: 34rem;
+}
+
+.hero-note {
+  padding: 16px 20px;
+  border: 1px solid var(--glass-line);
+  border-radius: 18px;
+  background: var(--glass);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+.portrait-frame {
+  overflow: hidden;
+  border: 1px solid var(--glass-line);
+  border-radius: 28px;
+  background: var(--glass);
+  padding: 10px 10px 0;
+  box-shadow: 0 30px 70px rgba(29, 56, 47, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+.portrait-frame .portrait {
+  border-radius: 20px;
+}
+
+.portrait-caption {
+  background: transparent;
+}
+
+.hero-floating-note,
+.hero-emblem,
+.hero-stamp {
+  border: 1px solid var(--glass-line);
+  background: var(--glass-strong);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+.hero-orbit-glow {
+  background: radial-gradient(circle, rgba(242, 197, 124, 0.55), rgba(127, 168, 138, 0.25) 55%, transparent 72%);
+}
+
+.hero-orbit {
+  border-color: rgba(63, 107, 85, 0.35);
+}
+
+/* ---------- Quick facts strip ---------- */
+.quick-facts {
+  padding-block: 8px;
+}
+
+.facts-inner {
+  margin-block: 0;
+  border: 1px solid var(--glass-line);
+  border-radius: 24px;
+  background: var(--glass);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  padding-inline: 12px;
+}
+
+/* ---------- Glass cards ---------- */
+.step-card,
+.coverage-card,
+.guide-card,
+.faq-item,
+.moments-video-frame,
+.contact-detail {
+  border: 1px solid var(--glass-line);
+  border-radius: 24px;
+  background: var(--glass);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+.step-card,
+.coverage-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* soft light sweep on cards */
+.step-card::before,
+.coverage-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 38%);
+}
+
+.step-card > *,
+.coverage-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.step-card:hover,
+.step-card:focus-within,
+.coverage-card:hover,
+.coverage-card:focus-within {
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--glass-shadow-lift);
+}
+
+.step-icon,
+.coverage-symbol,
+.fact-icon {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 1px 0 #fff, 0 4px 12px rgba(29, 56, 47, 0.08);
+}
+
+.guide-card {
+  border-radius: 28px;
+}
+
+.guide-topline,
+.guide-footer {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.topic-button,
+.moments-filter-button {
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.topic-button:hover,
+.moments-filter-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(29, 56, 47, 0.12);
+}
+
+.topic-button[aria-pressed="true"],
+.moments-filter-button[aria-pressed="true"] {
+  background: linear-gradient(135deg, #2f5a49, #24463c);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 24px rgba(29, 56, 47, 0.28);
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  border-radius: 18px;
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.faq-item[open] {
+  background: var(--glass-strong);
+  box-shadow: var(--glass-shadow-lift);
+}
+
+/* ---------- About ---------- */
+.about-portrait-wrap img {
+  border-radius: 26px;
+  box-shadow: 0 26px 60px rgba(29, 56, 47, 0.22);
+}
+
+.about-photo-label {
+  border: 1px solid var(--glass-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--forest-deep);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+/* ---------- Moments gallery ---------- */
+.moments-video {
+  border-radius: 20px;
+}
+
+.moments-photo {
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--glass-line);
+  box-shadow: 0 8px 24px rgba(29, 56, 47, 0.12);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.moments-photo:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 42px rgba(29, 56, 47, 0.22);
+}
+
+.moments-photo figcaption {
+  border-top: 1px solid var(--glass-line);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--forest-deep);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+.photo-lightbox::backdrop {
+  background: rgba(20, 40, 33, 0.55);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.photo-lightbox-toolbar,
+.photo-lightbox-footer {
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+/* ---------- Contact: deep forest with glass panels ---------- */
+.contact {
+  position: relative;
+  background:
+    radial-gradient(40vmax 28vmax at 85% 15%, rgba(127, 168, 138, 0.45), transparent 62%),
+    radial-gradient(34vmax 26vmax at 8% 95%, rgba(242, 197, 124, 0.22), transparent 62%),
+    linear-gradient(160deg, #1d382f 0%, #24463c 55%, #2c5646 100%);
+}
+
+.contact .contact-detail {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 12px 32px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+.contact .contact-details {
+  display: grid;
+  gap: 12px;
+}
+
+.contact .contact-detail,
+.contact .contact-detail:first-child {
+  padding: 16px 20px;
+}
+
+.button-light {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.6));
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+/* ---------- Mobile bar + small screens ---------- */
+.mobile-contact-bar {
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+@media (max-width: 900px) {
+  .header-inner {
+    border-radius: 24px;
+    padding-inline: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .facts-inner {
+    border-radius: 20px;
+  }
+
+  .step-card,
+  .coverage-card,
+  .guide-card {
+    border-radius: 20px;
+  }
+
+  .nature-orbs span {
+    opacity: 0.4;
+  }
+}
+
+/* ---------- Fallbacks & accessibility ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass: rgba(255, 255, 255, 0.82);
+    --glass-strong: rgba(255, 255, 255, 0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nature-orbs span {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass: rgba(255, 255, 255, 0.92);
+    --glass-strong: rgba(255, 255, 255, 0.97);
+  }
+}
+
+@media print {
+  body::before,
+  body::after,
+  .nature-orbs {
+    display: none;
+  }
+}
