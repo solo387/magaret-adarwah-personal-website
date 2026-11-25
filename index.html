@@ -8,10 +8,18 @@
       name="description"
       content="Thoughtful life insurance, health coverage, and annuity guidance from Ablaze Financial Consulting. Start with what you need—not a product."
     >
-    <link rel="canonical" href="https://ablaze-financial-consulting.web.app/">
+    <script>
+      (function () {
+        var h = location.hostname;
+        if (h === "ablaze-financial-consulting.web.app" || h === "ablaze-financial-consulting.firebaseapp.com") {
+          location.replace("https://ablazefinancingllc.com" + location.pathname + location.search + location.hash);
+        }
+      })();
+    </script>
+    <link rel="canonical" href="https://ablazefinancingllc.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Ablaze Financial Consulting">
-    <meta property="og:url" content="https://ablaze-financial-consulting.web.app/">
+    <meta property="og:url" content="https://ablazefinancingllc.com/">
     <meta property="og:title" content="Ablaze Financial Consulting | Clarity for what comes next">
     <meta
       property="og:description"
@@ -45,7 +53,7 @@
         "@context": "https://schema.org",
         "@type": "InsuranceAgency",
         "name": "Ablaze Financial Consulting LLC",
-        "url": "https://ablaze-financial-consulting.web.app/",
+        "url": "https://ablazefinancingllc.com/",
         "email": "margaret@ablazesolutions.net",
         "telephone": "+1-703-310-9458",
         "address": {
@@ -247,6 +255,15 @@
               <p>Explore how annuities work, including the terms, timelines, and trade-offs that deserve a closer look.</p>
               <a href="#guide" data-topic="annuities" aria-label="Explore annuity questions">Explore this topic <span aria-hidden="true">↗</span></a>
             </article>
+          </div>
+          <div class="more-services">
+            <h3 class="more-services-title">Also part of the conversation</h3>
+            <ul class="more-services-list">
+              <li><strong>Indexed universal life (IUL)</strong><span>Permanent life insurance with a cash value component, and the trade-offs to understand first.</span></li>
+              <li><strong>Long-term care planning</strong><span>Ways to think about the cost of care later in life, and how families plan for it.</span></li>
+              <li><strong>College savings plans</strong><span>Options for setting aside money for education, and how they differ.</span></li>
+              <li><strong>Debt management</strong><span>A clearer view of what you owe and how it fits with protecting your family.</span></li>
+            </ul>
           </div>
           <p class="coverage-note">Availability, features, underwriting, pricing, and eligibility vary by carrier, product, and jurisdiction.</p>
         </div>
@@ -659,6 +676,33 @@
             </div>
           </div>
           <div class="contact-details">
+            <form class="contact-form" id="contact-form" action="mailto:margaret@ablazesolutions.net" method="post" enctype="text/plain" aria-labelledby="contact-form-title">
+              <h3 id="contact-form-title">Request a conversation</h3>
+              <label>Your name <input type="text" name="name" autocomplete="name" required></label>
+              <label>Phone (optional) <input type="tel" name="phone" autocomplete="tel"></label>
+              <label>What would you like to talk about?
+                <select name="topic">
+                  <option>Life insurance</option>
+                  <option>Indexed universal life (IUL)</option>
+                  <option>Annuities</option>
+                  <option>Health coverage</option>
+                  <option>Long-term care planning</option>
+                  <option>College savings plans</option>
+                  <option>Debt management</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+              <label>Best time to reach you
+                <select name="time">
+                  <option>Morning</option>
+                  <option>Afternoon</option>
+                  <option>Evening</option>
+                  <option>Any time</option>
+                </select>
+              </label>
+              <button class="button button-light" type="submit">Prepare my email <span aria-hidden="true">↗</span></button>
+              <p class="form-note">This opens your email app with your request filled in. Please don’t include sensitive health, financial, or policy details.</p>
+            </form>
             <div class="contact-detail">
               <span class="contact-detail-label">EMAIL</span>
               <a href="mailto:margaret@ablazesolutions.net">margaret@ablazesolutions.net</a>
@@ -714,8 +758,8 @@
         </div>
       </div>
       <div class="footer-bottom section-shell">
-        <p>© <span id="current-year">2026</span> <a href="https://ablaze-financial-consulting.web.app/">Ablaze Financial Consulting LLC</a>. All rights reserved.</p>
-        <p class="disclaimer">Website content is general information only and is not tax, legal, investment, or accounting advice. No website content binds coverage or guarantees approval.</p>
+        <p>© <span id="current-year">2026</span> <a href="https://ablazefinancingllc.com/">Ablaze Financial Consulting LLC</a>. All rights reserved.</p>
+        <p class="disclaimer">Website content is general information only and is not tax, legal, investment, or accounting advice. No website content binds coverage or guarantees approval. Illustrations and projections for life insurance, indexed universal life, and annuity products are not guarantees; actual results depend on the carrier, product terms, underwriting, and policy performance.</p>
       </div>
     </footer>
     <nav class="mobile-contact-bar" aria-label="Quick contact">
