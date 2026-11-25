@@ -1,3 +1,7 @@
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/source-serif-4/opsz.css";
+@import "@fontsource-variable/source-serif-4/opsz-italic.css";
+
 /* ==========================================================================
    Ablaze — "Epic & formal" refinement layer. Loaded after glass.css.
    Deep forest + brushed gold, fine hairlines, confident serif display type,
@@ -6,8 +10,8 @@
 
 :root {
   /* Typography: Source Serif 4 (display) + Inter (text) — clear, authoritative, highly legible */
-  --display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
-  --body: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --display: "Source Serif 4 Variable", "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --body: "Inter Variable", "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
   --gold: #b3924f;
   --gold-soft: #e6d3a6;
   --gold-line: linear-gradient(90deg, #b3924f, #e6d3a6 60%, transparent);
@@ -38,17 +42,12 @@ h3 {
 
 .hero h1 em {
   background: linear-gradient(100deg, #3f6b55 0%, #b3924f 45%, #3f6b55 90%);
-  background-size: 220% 100%;
+  background-size: 100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gold-sheen 9s ease-in-out infinite alternate;
 }
 
-@keyframes gold-sheen {
-  from { background-position: 0% 50%; }
-  to   { background-position: 100% 50%; }
-}
 
 .eyebrow {
   letter-spacing: 0.26em;
