@@ -5,6 +5,9 @@
    ========================================================================== */
 
 :root {
+  /* Typography: Source Serif 4 (display) + Inter (text) — clear, authoritative, highly legible */
+  --display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --body: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
   --gold: #b3924f;
   --gold-soft: #e6d3a6;
   --gold-line: linear-gradient(90deg, #b3924f, #e6d3a6 60%, transparent);
@@ -13,21 +16,24 @@
 
 /* ---------- Typography: calmer, more formal ---------- */
 body {
-  font-feature-settings: "kern", "liga", "ss01";
+  font-size: 16px;
+  line-height: 1.7;
+  font-feature-settings: "kern", "liga", "calt";
   text-rendering: optimizeLegibility;
 }
 
 h1,
 h2,
 h3 {
-  letter-spacing: -0.012em;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
 .hero h1 {
-  font-size: clamp(50px, 6.4vw, 92px);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  font-size: clamp(44px, 5.6vw, 80px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
 }
 
 .hero h1 em {
