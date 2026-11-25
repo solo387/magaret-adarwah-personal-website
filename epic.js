@@ -172,3 +172,29 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 })();
+
+/* Contact form: build a ready-to-send email (no data leaves the visitor's device) */
+(() => {
+  const form = document.querySelector("#contact-form");
+  if (!form) return;
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get("name") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const body = [
+      "Hi Margaret,",
+      "",
+      "I'd like to request a conversation.",
+      "",
+      `Name: ${name}`,
+      phone ? `Phone: ${phone}` : "",
+      `Topic: ${data.get("topic")}`,
+      `Best time to reach me: ${data.get("time")}`,
+      "",
+      "Thank you.",
+    ].filter((line, index, all) => line !== "" || all[index - 1] !== "").join("\n");
+    const subject = `Conversation request: ${data.get("topic")}`;
+    window.location.href = `mailto:margaret@ablazesolutions.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+})();
